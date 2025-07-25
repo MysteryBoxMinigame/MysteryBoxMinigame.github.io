@@ -1374,3 +1374,85 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Known Bugs Modal Functions
+function openBugsModal() {
+    const modal = document.getElementById('bugs-modal');
+    if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.add('active');
+        // Prevent body scrolling
+        document.body.style.overflow = 'hidden';
+        // Animate modal opening
+        requestAnimationFrame(() => {
+            modal.style.opacity = '1';
+            const content = modal.querySelector('.modal-content');
+            if (content) {
+                content.style.transform = 'translateY(0) scale(1)';
+            }
+        });
+    }
+}
+
+function closeBugsModal() {
+    const modal = document.getElementById('bugs-modal');
+    if (modal) {
+        const content = modal.querySelector('.modal-content');
+        if (content) {
+            content.style.transform = 'translateY(-50px) scale(0.95)';
+        }
+        modal.style.opacity = '0';
+        modal.classList.remove('active');
+        // Re-enable body scrolling
+        document.body.style.overflow = '';
+        
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
+    }
+}
+
+function switchBugsTab(tabName) {
+    // Remove active class from all tab buttons
+    const tabButtons = document.querySelectorAll('.bugs-tab-btn');
+    tabButtons.forEach(btn => btn.classList.remove('active'));
+    
+    // Add active class to clicked button
+    const activeButton = document.querySelector(`[onclick="switchBugsTab('${tabName}')"]`);
+    if (activeButton) {
+        activeButton.classList.add('active');
+    }
+    
+    // Hide all tab contents
+    const tabContents = document.querySelectorAll('.bugs-tab-content');
+    tabContents.forEach(content => content.classList.remove('active'));
+    
+    // Show selected tab content
+    const activeTab = document.getElementById(`${tabName}-tab`);
+    if (activeTab) {
+        activeTab.classList.add('active');
+    }
+}
+
+// Close bugs modal when clicking outside
+document.addEventListener('click', (e) => {
+    const modal = document.getElementById('bugs-modal');
+    const modalContent = document.querySelector('.bugs-modal-content');
+    
+    if (modal && modal.style.display === 'flex' && 
+        !modalContent.contains(e.target) && 
+        !e.target.classList.contains('nav-info-btn') &&
+        !e.target.closest('.nav-info-btn')) {
+        closeBugsModal();
+    }
+});
+
+// Handle escape key for bugs modal
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('bugs-modal');
+        if (modal && modal.style.display === 'flex') {
+            closeBugsModal();
+        }
+    }
+});

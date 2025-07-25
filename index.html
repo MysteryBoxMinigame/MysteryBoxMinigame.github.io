@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MysteryBox - Premium Collectibles</title>
-    <link rel="stylesheet" href="MysteryBox/styles.css">
+    <link rel="icon" href="Images/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -24,6 +25,9 @@
                 <span>MysteryBox</span>
             </div>
             <div class="nav-links">
+                <button class="nav-info-btn" onclick="openBugsModal()" title="System Info & Updates">
+                    <i class="fas fa-info-circle"></i>
+                </button>
                 <a href="#home">Home</a>
                 <a href="#boxes">Boxes</a>
                 <a href="#leaderboard">Leaderboard</a>
@@ -420,7 +424,174 @@
         </div>
     </div>
 
+    <!-- Known Bugs & Updates Modal -->
+    <div id="bugs-modal" class="modal">
+        <div class="modal-content bugs-modal-content">
+            <div class="modal-header">
+                <h3>System Information</h3>
+                <button class="modal-close" onclick="closeBugsModal()">&times;</button>
+            </div>
+            
+            <div class="bugs-tabs">
+                <button class="bugs-tab-btn active" onclick="switchBugsTab('updates')">
+                    <i class="fas fa-history"></i>
+                    Update Log
+                </button>
+                <button class="bugs-tab-btn" onclick="switchBugsTab('bugs')">
+                    <i class="fas fa-bug"></i>
+                    Known Bugs
+                </button>
+            </div>
+            
+            <div class="bugs-content">
+                <!-- Known Bugs Tab -->
+                <div id="bugs-tab" class="bugs-tab-content">
+                    <div class="bugs-section">
+                        <h4 class="bugs-section-title">Current Known Issues</h4>
+                        <div class="bug-item high-priority">
+                            <div class="bug-severity high">HIGH</div>
+                            <div class="bug-details">
+                                <h5>Authentication System</h5>
+                                <p>Google sign-in may occasionally fail on first attempt. Workaround: Try signing in again.</p>
+                                <div class="bug-meta">
+                                    <span class="bug-date">Reported: Jan 15, 2025</span>
+                                    <span class="bug-status investigating">Investigating</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bug-item medium-priority">
+                            <div class="bug-severity medium">MEDIUM</div>
+                            <div class="bug-details">
+                                <h5>Box Opening Animation</h5>
+                                <p>Opening animation may freeze on slower devices. The box will still open correctly.</p>
+                                <div class="bug-meta">
+                                    <span class="bug-date">Reported: Jan 20, 2025</span>
+                                    <span class="bug-status planned">Fix Planned</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bug-item low-priority">
+                            <div class="bug-severity low">LOW</div>
+                            <div class="bug-details">
+                                <h5>Inventory Sorting</h5>
+                                <p>Items may not sort correctly by rarity when switching between filters.</p>
+                                <div class="bug-meta">
+                                    <span class="bug-date">Reported: Jan 22, 2025</span>
+                                    <span class="bug-status acknowledged">Acknowledged</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bugs-section">
+                        <h4 class="bugs-section-title">How to Report Bugs</h4>
+                        <div class="bug-report-info">
+                            <p>Found a new bug? Help us improve MysteryBox by reporting it!</p>
+                            <div class="report-steps">
+                                <div class="report-step">
+                                    <i class="fas fa-search"></i>
+                                    <span>Check if it's already listed above</span>
+                                </div>
+                                <div class="report-step">
+                                    <i class="fas fa-camera"></i>
+                                    <span>Take a screenshot if possible</span>
+                                </div>
+                                <div class="report-step">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Contact us via Support in the footer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Updates Tab -->
+                <div id="updates-tab" class="bugs-tab-content active">
+                    <div class="updates-timeline">
+                        <div class="update-item">
+                            <div class="update-date">Jan 24, 2025</div>
+                            <div class="update-content">
+                                <h5 class="update-title">v2.1.0 - Enhanced User Experience</h5>
+                                <div class="update-changes">
+                                    <div class="change-type new">NEW</div>
+                                    <span>Added Known Bugs & Update Log modal</span>
+                                </div>
+                                <div class="update-changes">
+                                    <div class="change-type improved">IMPROVED</div>
+                                    <span>Enhanced box opening animations</span>
+                                </div>
+                                <div class="update-changes">
+                                    <div class="change-type fixed">FIXED</div>
+                                    <span>Resolved leaderboard refresh issues</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="update-item">
+                            <div class="update-date">Jan 18, 2025</div>
+                            <div class="update-content">
+                                <h5 class="update-title">v2.0.1 - Bug Fixes & Improvements</h5>
+                                <div class="update-changes">
+                                    <div class="change-type fixed">FIXED</div>
+                                    <span>Credit purchase confirmation dialog</span>
+                                </div>
+                                <div class="update-changes">
+                                    <div class="change-type improved">IMPROVED</div>
+                                    <span>Mobile responsiveness for inventory grid</span>
+                                </div>
+                                <div class="update-changes">
+                                    <div class="change-type security">SECURITY</div>
+                                    <span>Enhanced authentication security</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="update-item">
+                            <div class="update-date">Jan 12, 2025</div>
+                            <div class="update-content">
+                                <h5 class="update-title">v2.0.0 - Major Update</h5>
+                                <div class="update-changes">
+                                    <div class="change-type new">NEW</div>
+                                    <span>Premium Mystery Box with Mythic rarity</span>
+                                </div>
+                                <div class="update-changes">
+                                    <div class="change-type new">NEW</div>
+                                    <span>Real-time leaderboard system</span>
+                                </div>
+                                <div class="update-changes">
+                                    <div class="change-type improved">IMPROVED</div>
+                                    <span>Complete UI/UX redesign</span>
+                                </div>
+                                <div class="update-changes">
+                                    <div class="change-type new">NEW</div>
+                                    <span>Google OAuth integration</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="update-item">
+                            <div class="update-date">Jul 01, 2025</div>
+                            <div class="update-content">
+                                <h5 class="update-title">v1.0.0 - Beta Release</h5>
+                                <div class="update-changes">
+                                    <div class="change-type new">NEW</div>
+                                    <span>Holiday-themed collectibles</span>
+                                </div>
+                                <div class="update-changes">
+                                    <div class="change-type improved">IMPROVED</div>
+                                    <span>Box opening sound effects</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     
-    <script src="MysteryBox/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
